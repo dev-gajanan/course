@@ -1,8 +1,9 @@
 Project Setup:
 
 1. Create a node js project by using
-   a. npm init and manuall fill up each step
-   b. npm init -y
+
+   1. npm init and manuall fill up each step
+   2. npm init -y
 
    Note: package.json file will be created in the project that is heart of the project
 
@@ -20,6 +21,29 @@ Project Setup:
    - this package we can install as a dev dependecies as this is only for development purpose
    - we can install package as dev dependencies using flag --save-dev along with npm install command
    - to run a project using nodemon use the command nodemon index.js
+
+4. create .env file to store all secret information about the project
+
+Create Express Server(backend server/node server):
+To create an express sever we need to follow below steps
+
+1.  import or include express package in the main file in our case it is index.js
+
+const express = require("express");
+const app = express();
+
+//include and config dotenv to read environment variable
+require("dotenv").config({
+path: "./.env",
+});
+
+//get the port from .env file
+const port = process.env.PORT;
+
+//listen the server
+app.listen(port, function () {
+console.log("Application running on http://localhost:" + port);
+});
 
 Database Setup:
 

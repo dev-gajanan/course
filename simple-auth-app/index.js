@@ -1,17 +1,16 @@
-//import or include express js
+//include express package
 const express = require("express");
+const app = express(); //create app constructor
 
-//import or include dotenv
+//include and config dotenv to read environment variable
 require("dotenv").config({
   path: "./.env",
 });
 
-//create the object for express
-const app = express();
-
-//port for the application
+//get the port from .env file
 const port = process.env.PORT;
 
+//listen the server
 app.listen(port, function () {
   console.log("Application running on http://localhost:" + port);
 });
