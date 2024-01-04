@@ -29,15 +29,15 @@ To create an express sever we need to follow below steps
 
 1.  import or include express package in the main file in our case it is index.js
 
-const express = require("express");
-const app = express();
-require("dotenv").config({
-path: "./.env",
-});
-const port = process.env.PORT;
-app.listen(port, function () {
-console.log("Application running on http://localhost:" + port);
-});
+- const express = require("express");
+- const app = express();
+- require("dotenv").config({
+  path: "./.env",
+  });
+- const port = process.env.PORT;
+- app.listen(port, function () {
+  console.log("Application running on http://localhost:" + port);
+  });
 
 Database Setup:
 
