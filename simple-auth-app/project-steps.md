@@ -31,16 +31,10 @@ To create an express sever we need to follow below steps
 
 const express = require("express");
 const app = express();
-
-//include and config dotenv to read environment variable
 require("dotenv").config({
 path: "./.env",
 });
-
-//get the port from .env file
 const port = process.env.PORT;
-
-//listen the server
 app.listen(port, function () {
 console.log("Application running on http://localhost:" + port);
 });
