@@ -7,10 +7,16 @@ require("dotenv").config({
   path: "./.env",
 });
 
+const connection = require("./database/index.js");
+
 //get the port from .env file
 const port = process.env.PORT;
 
 //listen the server
-app.listen(port, function () {
-  console.log("Application running on http://localhost:" + port);
-});
+if (connection.config.connectionConfig.host) {
+  app.listen(port, function () {
+    console.log("Application running on http://localhost:" + port);
+  });
+} else {
+  console.log("Database connection failed!!");
+}

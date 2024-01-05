@@ -39,13 +39,25 @@ To create an express sever we need to follow below steps
   console.log("Application running on http://localhost:" + port);
   });
 
+Project Architecture(MVC Design Pattern):
+
+The folder structure for MVC design is
+
+1. models
+2. view (for backend we dont need to create)
+3. controllers
+4. database
+5. utils
+6. middlewares
+7. routes
+
 Database Setup:
 
 1. We are using mysql database
 2. open xampp and click on start apache and mysql
 3. open phpmyadmin in browser
    http://localhost/phpmyadmin/index.php
-4. create a databse named as auth_app
+4. create a database named as auth_app
 5. create tables users that should contains fields like
    - id ==> int, primary key, auto increment
    - fullname = varchar(256)
@@ -55,3 +67,29 @@ Database Setup:
    - updated_at = datetime
    - status = int
      then click on save to create table
+
+MYSQL Database connection with Node Application:
+
+1. Install mysql2 package from npm (https://www.npmjs.com/package/mysql2)
+2. create index.js file inside database folder
+
+   - const util = require("util");
+   - const mysql = require("mysql2");
+   - require("dotenv").config({
+     path: "../.env",
+     });
+   - const connection = mysql.createPool({
+     host: process.env.DB_HOST,
+     port: process.env.DB_PORT,
+     user: process.env.DB_USER,
+     password: process.env.DB_PASSWORD,
+     database: process.env.DB_NAME,
+     });
+   - console.log(
+     `\n Database connected on host: `,
+     connection.config.connectionConfig.host
+     );
+   - connection.query = util.promisify(connection.query).bind(connection);
+   - module.exports = connection;
+
+3. use this connection in main index.js file (see the index.js for reference)
