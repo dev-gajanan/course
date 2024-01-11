@@ -8,9 +8,20 @@ require("dotenv").config({
 });
 
 const connection = require("./database/index.js");
+const userRoutes = require("./routes/user.routes.js");
 
 //get the port from .env file
 const port = process.env.PORT;
+
+//middlewares
+app.use(
+  express.json({
+    limit: "16kb",
+  })
+);
+
+app.use(express.urlencoded({ extended: true, limit: "16kb" }));
+app.use("/users", userRoutes);
 
 //listen the server
 if (connection.config.connectionConfig.host) {

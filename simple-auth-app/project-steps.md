@@ -93,3 +93,48 @@ MYSQL Database connection with Node Application:
    - module.exports = connection;
 
 3. use this connection in main index.js file (see the index.js for reference)
+
+#Registration module
+
+Parameter we needs from user to register
+
+1. Fullname
+2. Username
+3. Password
+
+#Creatign the controller
+
+1.  In controlles folder create users.controller.js file
+2.  Then do the code for registration method
+
+    - const Users = {
+      async registration(req, res) {
+      try {
+      const fullname = req.body.fullname;
+      const username = req.body.username;
+      const password = req.body.password;
+      console.log(fullname, username, password);
+      return res.status(200).json({ data: req.query });
+      } catch (error) {
+      console.log(error);
+      throw new Error(error);
+      }
+      },
+      };
+
+    - module.exports = Users;
+
+#Creating router
+
+1. In routes folder create user.routes.js file
+2. Then add the following codes
+
+   - const express = require("express");
+   - const router = express.Router();
+   - const Users = require("../controllers/user.contoller.js");
+
+   - //url: http://localhost:8000/users/register
+
+   - router.get("/register", Users.registration);
+
+   - module.exports = router;
